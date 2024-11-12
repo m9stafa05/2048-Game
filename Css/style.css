@@ -1,0 +1,123 @@
+/* Start globel rules */
+:root {
+  --main-color: #000000;
+  --main-color-alt: #ffedda;
+  --main-transition: 0.3s;
+  --main-padding: 70px;
+  --secition-background: #faf8ef;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--secition-background);
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* Start */
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 660px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.info h1 {
+  font-size: 50px;
+  color: var(--main-color);
+  line-height: 0.8;
+}
+.info .score-contanier {
+  background-color: var(--main-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center;
+  width: 100px;
+  height: 55px;
+  span {
+    color: white;
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+.grid {
+  width: 600px;
+  height: 600px;
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid var(--main-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: var(--main-color);
+}
+.grid div {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: var(--main-color-alt);
+  /* border: 1px solid #e7e7e7; */
+  color: var(--main-color-alt);
+  border-radius: 7px;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.6;
+}
+.result {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: rgb(0, 149, 255);
+}
