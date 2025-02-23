@@ -2,6 +2,10 @@
 
 # 2048 Game
 
+
+# Live Preview
+https://m9stafa05.github.io/2048-Game/
+
 ## Overview
 The 2048 Game is a single-player puzzle game created using HTML, CSS, and JavaScript. The objective of the game is to slide numbered tiles on a grid to combine them and create a tile with the number 2048. The game combines elements of strategy and chance, providing a fun and challenging experience.
 
