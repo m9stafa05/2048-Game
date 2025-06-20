@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- font awesomwe -->
+    <!-- font awesome -->
     <link rel="stylesheet" href="Css/all.min.css" />
-    <!-- rener all elment -->
+    <!-- normalize all elements -->
     <link rel="stylesheet" href="Css/normalis.css" />
-    <!-- main tempalate style -->
+    <!-- main template style -->
     <link rel="stylesheet" href="Css/style.css" />
+    <link rel="stylesheet" href="Css/responsive.css" />
     <!-- title logo -->
     <link rel="website icon" type="png" href="" />
     <!-- google font -->
@@ -26,11 +27,33 @@
         <div class="info">
             <h1>2048</h1>
             <div class="score-contanier">
-                <div class="score-title">Score <span id="score"></span></div>
+                <div class="score-title">
+                    Score <span id="score"></span>
+                </div>
             </div>
         </div>
-        <p class="result">Join The Number To Get The <b>2048</b> Title</p>
+        <p class="result">
+            Join The Number To Get The <b>2048</b> Title
+        </p>
         <div class="grid"></div>
+        <!-- Arrow controls start -->
+        <div class="arrow-controls">
+            <button class="arrow-btn up" aria-label="Up">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            <div class="arrow-row">
+                <button class="arrow-btn left" aria-label="Left">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="arrow-btn down" aria-label="Down">
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+                <button class="arrow-btn right" aria-label="Right">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Arrow controls end -->
     </div>
     <script src="main.js"></script>
 </body>
