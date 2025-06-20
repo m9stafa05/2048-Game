@@ -8,7 +8,7 @@ A modern, responsive implementation of the classic 2048 puzzle game built with H
 
 ## 🚀 Live Demo
 
-[Play 2048 Game Online](https://typing-speed-test-one-ruby.vercel.app/)
+[Play 2048 Game Online](https://2048-game-zeta-beryl.vercel.app/)
 
 ---
 
