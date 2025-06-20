@@ -2,28 +2,63 @@
 
 # 2048 Game
 
+A modern, responsive implementation of the classic 2048 puzzle game built with HTML, CSS, and JavaScript. Slide and merge tiles to reach the 2048 tile and challenge yourself to achieve even higher scores!
 
-# Live Preview
-https://m9stafa05.github.io/2048-Game/
+---
 
-## Overview
-The 2048 Game is a single-player puzzle game created using HTML, CSS, and JavaScript. The objective of the game is to slide numbered tiles on a grid to combine them and create a tile with the number 2048. The game combines elements of strategy and chance, providing a fun and challenging experience.
+## 🚀 Live Demo
 
-## Features
-- Classic 2048 gameplay with a 5x5 grid.
-- Smooth animations and transitions for tile movements.
-- Dynamic color changes based on tile values.
-- Responsive design for different screen sizes.
-- Win condition when a tile reaches 2048.
-- Game over condition when no valid moves are left.
+[Play 2048 Game Online](https://typing-speed-test-one-ruby.vercel.app/)
 
-## How to Play
-1. Use the arrow keys (`ArrowUp`, `ArrowDown`, `ArrowLeft`, `ArrowRight`) to move the tiles.
-2. Tiles with the same number will merge into one when they collide.
-3. The goal is to create a tile with the number 2048.
-4. If there are no more moves left, the game will end.
+---
 
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
+## 🎮 Features
+
+- **Classic 2048 Gameplay**: Merge tiles with the same number to reach 2048.
+- **5x5 Grid**: Offers a unique twist on the traditional 4x4 grid for more challenge.
+- **Smooth Animations**: Enjoy fluid transitions and tile animations.
+- **Dynamic Color Themes**: Tiles change color based on their value.
+- **Responsive Design**: Fully playable on desktop, tablet, and mobile devices.
+- **Keyboard & Touch Controls**: Use arrow keys or swipe gestures; on-screen arrow buttons for mobile.
+- **Win & Game Over Detection**: Clear feedback when you win or lose.
+- **Accessible UI**: Keyboard and screen reader friendly.
+
+---
+
+## 📖 Usage
+
+- **Start Playing:**Open the game in your browser. Two tiles will appear on the grid.
+- **Controls:**
+
+  - **Keyboard:** Use the arrow keys (`↑`, `↓`, `←`, `→`) to move tiles.
+  - **Touch:** Swipe in any direction on mobile devices.
+  - **On-Screen Buttons:** Tap the arrow buttons below the grid.
+
+- **Objective:**Merge tiles with the same number to create higher-value tiles. Reach the 2048 tile to win!
+- **Game Over:**
+  The game ends when no moves are possible.
+
+---
+
+## 🧩 Technologies & Dependencies
+
+- **HTML5**: Semantic markup for structure.
+- **CSS3**: Modern layout, responsive design, and animations.
+- **JavaScript (ES6+)**: Game logic and interactivity.
+- **Font Awesome**: For arrow button icons.
+- **Google Fonts**: For stylish typography.
+
+---
+
+## 📂 Project Structure
+
+```
+/2048-Game
+|-- index.html          # Main HTML file
+|-- style.css          # Stylesheet for the game
+|-- script.js          # JavaScript file for game logic
+|-- README.md          # This README file
+|-- /assets             # Folder for game assets
+    |-- /images         # Image files (if any)
+    |-- /sounds         # Sound files (if any)
+```
