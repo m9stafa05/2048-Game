@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(randomNumber);
         if (squres[randomNumber].innerHTML == 0) {
             squres[randomNumber].innerHTML = 2;
+            animateTile(randomNumber); // Animate new tile
             // Check For GameOver
             checkForGameOver()
         } else {
@@ -188,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 squres[i + width].innerHTML = 0;
                 score += combined;
                 scoreDisplay.innerHTML = score;
+                animateTile(i); // Animate merged tile
             }
         }
         checkForWin()
@@ -202,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 squres[i + 1].innerHTML = 0;
                 score += combined;
                 scoreDisplay.innerHTML = score;
+                animateTile(i); // Animate merged tile
             }
         }
         checkForWin()
@@ -299,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (zeros === 0 && !canMerge) {
             resultDisplay.innerHTML = "You Lose"; // Display the game over message
             document.removeEventListener('keydown', control); // Stop listening for key presses
-            clearInterval(myTime) 
+            clearInterval(myTime)
             // setTimeout(clear, 3000); // Clear or reset the game after 3 seconds
         }
     }
@@ -308,45 +311,131 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(myTime)
     }
 
-    // Add Colors
+    // Update colors function to use new palette and support up to 8192
     function addColors() {
-        // for (let i = 0; i < squres.length; i++) {
-        //     if (squres[i].innerHTML == 0) squres[i].style.backgroundColor = "#a47f5a"
-        //     else if (squres[i].innerHTML == 2) squres[i].style.backgroundColor = "#bf8c5a"
-        //     else if (squres[i].innerHTML == 4) squres[i].style.backgroundColor = "#d4a378"
-        //     else if (squres[i].innerHTML == 8) squres[i].style.backgroundColor = "#e8b68c"
-        //     else if (squres[i].innerHTML == 16) squres[i].style.backgroundColor = "#f2c07b"
-        //     else if (squres[i].innerHTML == 32) squres[i].style.backgroundColor = "#f59d6d"
-        //     else if (squres[i].innerHTML == 64) squres[i].style.backgroundColor = "#f77d5c"
-        //     else if (squres[i].innerHTML == 128) squres[i].style.backgroundColor = "#f5c65e"
-        //     else if (squres[i].innerHTML == 256) squres[i].style.backgroundColor = "#edc53f"
-        //     else if (squres[i].innerHTML == 512) squres[i].style.backgroundColor = "#edc22e"
-        //     else if (squres[i].innerHTML == 1024) squres[i].style.backgroundColor = "#ecc400"
-        //     else if (squres[i].innerHTML == 2048) squres[i].style.backgroundColor = "#edbb00"
-        // }
         const colors = {
-            0: "#ffedda",
-            2: "#bf8c5a",
-            4: "#d4a378",
-            8: "#e8b68c",
-            16: "#f2c07b",
-            32: "#f59d6d",
-            64: "#f77d5c",
-            128: "#f5c65e",
-            256: "#edc53f",
-            512: "#edc22e",
-            1024: "#ecc400",
-            2048: "#edbb00"
+            0: "#fff5f5", // Very light red (almost white-pink)
+            2: "#ffe3e3", // Light blush
+            4: "#ffc9c9", // Soft pink
+            8: "#ffa8a8", // Light coral
+            16: "#ff8787", // Salmon pink
+            32: "#ff6b6b", // Medium red
+            64: "#fa5252", // Strong red
+            128: "#f03e3e", // Bold red
+            256: "#e03131", // Deeper red
+            512: "#c92a2a", // Deep crimson
+            1024: "#a51111", // Dark red
+            2048: "#800000", // Maroon
+            4096: "#660000", // Very dark red
+            8192: "#4d0000"  // Almost black red
         };
-
-        // Update the colors of squares
 
         for (let i = 0; i < squres.length; i++) {
             const value = squres[i].innerHTML;
-            squres[i].style.backgroundColor = colors[value] || "#ccc"; // Default color if value is not in the colors object
+            squres[i].style.backgroundColor = colors[value] || "#ccc";
+            // Use white text for dark backgrounds, dark text for light backgrounds
+            if (parseInt(value) >= 64) {
+                squres[i].style.color = "#fff";
+            } else {
+                squres[i].style.color = "#232946";
+            }
         }
-
     }
     addColors()
     let myTime = setInterval(addColors, 50)
+
+    // Responsive nav toggle
+    const navToggle = document.querySelector('.nav__toggle');
+    if (navToggle) {
+        navToggle.addEventListener('click', function () {
+            document.querySelector('.nav__links').classList.toggle('active');
+        });
+    }
+
+    // Arrow button controls (robust for mobile/small screens)
+    const upBtn = document.querySelector('.arrow-btn.up');
+    const downBtn = document.querySelector('.arrow-btn.down');
+    const leftBtn = document.querySelector('.arrow-btn.left');
+    const rightBtn = document.querySelector('.arrow-btn.right');
+    if (upBtn && downBtn && leftBtn && rightBtn) {
+        upBtn.addEventListener('click', function () {
+            KeyUp();
+            upBtn.blur();
+        });
+        downBtn.addEventListener('click', function () {
+            KeyDown();
+            downBtn.blur();
+        });
+        leftBtn.addEventListener('click', function () {
+            KeyLeft();
+            leftBtn.blur();
+        });
+        rightBtn.addEventListener('click', function () {
+            KeyRight();
+            rightBtn.blur();
+        });
+
+        // Optional: allow keyboard Enter/Space on focused button
+        [upBtn, downBtn, leftBtn, rightBtn].forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    btn.click();
+                }
+            });
+        });
+    }
+
+    // Add loading animation on page load
+    const loader = document.createElement('div');
+    loader.className = 'loader-overlay';
+    loader.innerHTML = '<div class="loader"></div>';
+    document.body.appendChild(loader);
+    setTimeout(() => {
+        loader.classList.add('hide');
+        setTimeout(() => loader.remove(), 600);
+    }, 900);
+
+    // Animate tile when created or merged
+    function animateTile(index) {
+        const tile = squres[index];
+        if (!tile) return;
+        tile.classList.remove('tile-animate');
+        void tile.offsetWidth; // trigger reflow
+        tile.classList.add('tile-animate');
+    }
 });
+leftBtn.blur();
+
+rightBtn.addEventListener('click', function () {
+    KeyRight();
+    rightBtn.blur();
+});
+
+// Optional: allow keyboard Enter/Space on focused button
+[upBtn, downBtn, leftBtn, rightBtn].forEach(btn => {
+    btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            btn.click();
+        }
+    });
+});
+
+
+// Add loading animation on page load
+const loader = document.createElement('div');
+loader.className = 'loader-overlay';
+loader.innerHTML = '<div class="loader"></div>';
+document.body.appendChild(loader);
+setTimeout(() => {
+    loader.classList.add('hide');
+    setTimeout(() => loader.remove(), 600);
+}, 900);
+
+// Animate tile when created or merged
+function animateTile(index) {
+    const tile = squres[index];
+    if (!tile) return;
+    tile.classList.remove('tile-animate');
+    void tile.offsetWidth; // trigger reflow
+    tile.classList.add('tile-animate');
+}
